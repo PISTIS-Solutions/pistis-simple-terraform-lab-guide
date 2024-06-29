@@ -1,5 +1,10 @@
 resource "aws_vpc" "my_vpc" {
   cidr_block = var.vpc_cidr_block
+
+  tags = {
+     Name = "demo-vpc"
+  }
+
 }
 
 # Create Internet Gateway
@@ -34,11 +39,11 @@ resource "aws_route_table_association" "public_subnet_association" {
 
 # Launch EC2 Instance
 resource "aws_instance" "my_instance" {
-  ami             = var.ami_id
-  instance_type   = "t2.micro"
-  key_name        = var.keypair_name
-  subnet_id       = aws_subnet.public_subnet.id
-  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  ami                         = var.ami_id
+  instance_type               = "t2.micro"
+  key_name                    = var.keypair_name
+  subnet_id                   = aws_subnet.public_subnet.id
+  vpc_security_group_ids      = [aws_security_group.my_security_group.id]
   associate_public_ip_address = true # Enable auto-assign public IP for the instance
 
   tags = {
