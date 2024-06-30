@@ -3,7 +3,7 @@ terraform {
     organization = "Pistis"
 
     workspaces {
-      name = "pistis-simple-lab"
+      name = "pistis-simple-lab-dev"
     }
   }
 }
